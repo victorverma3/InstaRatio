@@ -6,7 +6,6 @@ Created on Wed Jan 25 17:26:25 2023
 @author: victor
 """
 import json
-import os
 import time
 
 # run the file for instructions
@@ -21,9 +20,9 @@ print("<user> should be a lowercase string representing the person whose data is
 # check which users don't follow you back
 def go(user, speed = None):
     # open relevant files
-    with open(f'{os.getcwd()}/{user}/followers_1.json') as file:
+    with open(f'./{user}/followers_1.json') as file:
         followers = json.load(file)
-    with open(f'{os.getcwd()}/{user}/following.json') as file:
+    with open(f'./{user}/following.json') as file:
         following = json.load(file)
     
     # create list of people who don't follow user back
