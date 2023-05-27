@@ -19,7 +19,7 @@ person whose data is being used. Then, move this folder into the same
 local directory as IGBot.py.
 
 The following python modules must be installed for this program to run: 
-json and time (see other tutorials online to install these).
+json, pandas, and time (see other tutorials online to install these).
 
 Once the setup is complete, run the file IGBot.py and follow the 
 instructions that are provided.
