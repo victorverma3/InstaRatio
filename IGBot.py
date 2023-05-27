@@ -13,10 +13,10 @@ import time
 print("\nInstructions:")
 print("1. Open Instagram -> Settings -> Privacy and Security")
 print("2. Request data download as json files")
-print("3. Move followers_1.json and following.json into a folder called <user> in the same directory as this file\n")
+print("3. Move followers_1.json and following.json into a folder called {user} in the same directory as this file\n")
 print("When ready, type in: go(user)")
 print("If you want to get results instantly, type in: go(user, 'f')\n")
-print("<user> should be a lowercase string representing the person whose data is being used")
+print("{user} should be a lowercase string representing the person whose data is being used")
 
 # check which users don't follow you back
 def go(user, speed = None):
@@ -52,4 +52,5 @@ def go(user, speed = None):
             print(user)
             time.sleep(0.125)
     print(f"\n{str(len(following_list))} users don't follow you back")
+    print('The list of users is also available in csv format in /{user}/{user}users.csv')
     return following_list
