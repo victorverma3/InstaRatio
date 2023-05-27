@@ -14,7 +14,7 @@ and I.
 First, open the desired Instagram account and navigate to Settings --> 
 Privacy and Security. At this screen, request the user data to be 
 downloaded as json files. Finally, move the files followers_1.json and 
-following.json into a folder called <user>, where user is the name of the 
+following.json into a folder called {user}, where user is the name of the 
 person whose data is being used. Then, move this folder into the same 
 local directory as IGBot.py.
 
