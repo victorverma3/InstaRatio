@@ -6,6 +6,7 @@ Created on Wed Jan 25 17:26:25 2023
 @author: victor
 """
 import json
+import pandas as pd
 import time
 
 # run the file for instructions
@@ -36,11 +37,19 @@ def go(user, speed = None):
     # format results
     following_list.sort()
     
+    # creates a csv containg the users
+    data = {
+        'Users': following_list
+        }
+    df = pd.DataFrame(data, columns = ['Users'])
+    path = f'./{user}/{user}users.csv'
+    df.to_csv(path, index = 'False')
+    
     # display results
     if speed != 'f':
         print("\nThe following users don't follow you back on instagram:\n")
         for user in following_list:
             print(user)
             time.sleep(0.125)
-    print("\n{str(len(following_list))} users don't follow you back")
+    print(f"\n{str(len(following_list))} users don't follow you back")
     return following_list
