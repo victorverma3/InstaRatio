@@ -15,42 +15,35 @@ print("1. Open Instagram -> Settings -> Privacy and Security")
 print("2. Request data download as json files")
 print("3. Move followers_1.json and following.json into a folder called {user} in the same directory as this file\n")
 print("When ready, type in: find(user)")
-print("If you want to get results instantly, type in: find(user, 'fast')\n")
 print("{user} should be a lowercase string representing the person whose data is being used")
 
-# check which users don't follow you back
-def find(user, speed = None):
+# program
+def find(user):
     # open relevant files
     with open(f'./{user}/followers_1.json') as file:
         followers = json.load(file)
     with open(f'./{user}/following.json') as file:
         following = json.load(file)
     
-    # create list of people who don't follow user back
-    following_list = []
-    for following in following['relationships_following']:
-        following_list.append(following["string_list_data"][0]["value"])
-    for follower in followers:
-        if follower["string_list_data"][0]["value"] in following_list:
-            following_list.remove(follower["string_list_data"][0]["value"])
+    # finds fakes and fans
+    following = [user['string_list_data'][0]['value'] for user in following['relationships_following']]
+    followers = [user['string_list_data'][0]["value"] for user in followers]
     
-    # format results
-    following_list.sort()
+    fakes = list(set(following) - set(followers))
+    fans = list(set(followers) - set(following))
     
-    # creates a csv containg the users
+    # sorts results
+    fakes.sort()
+    fans.sort()
+    
+    # creates a csv containing the users
     data = {
-        'Users': following_list
+        "Fakes": fakes
         }
-    df = pd.DataFrame(data, columns = ['Users'])
+    df = pd.DataFrame(data, columns = ["Fakes"])
+    newSeries = pd.Series(fans, name = 'Fans')
+    df = pd.concat([df, newSeries], axis = 1)
     path = f'./{user}/{user}users.csv'
     df.to_csv(path, index = 'False')
-    
-    # display results
-    if speed != 'fast':
-        print("\nThe following users don't follow you back on instagram:\n")
-        for user in following_list:
-            print(user)
-            time.sleep(0.125)
-    print(f"\n{str(len(following_list))} users don't follow you back")
-    print('The list of users is also available in csv format in /{user}/{user}users.csv')
-    return following_list
+    print(f'\nThe list of fakes and fans is available in csv format at ./{user}/{user}users.csv\n')
+    return df
