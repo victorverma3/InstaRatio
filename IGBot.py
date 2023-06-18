@@ -7,7 +7,6 @@ Created on Wed Jan 25 17:26:25 2023
 """
 import json
 import pandas as pd
-import time
 
 # run the file for instructions
 print("\nInstructions:")
