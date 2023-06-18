@@ -1,10 +1,10 @@
-# IGBot
+# FakeFriends
 
 # Inspiration
 Instagram, like most social medias, is full of "fake friends", which I define as any account that is not both following the user and followed by the user. I created this program so that users can identify their "fake friends" on Instagram and take action to follow/unfollow them if desired. Naturally, there will accounts (e.g. sports pages) that will not follow the user back, but this is left for the user to categorize. 
 
 # Overview
-Fans are defined as accounts that follow the user, but the user doesn't follow back. Fakes are defined as accounts that the user follows, but don't follow the user back. This program will read the user's following and follower JSON data and create a CSV with two columns. The first column lists the fakes, and the second column lists the fans.
+Fakes are defined as accounts that the user follows, but don't follow the user back. Fans are defined as accounts that follow the user, but the user doesn't follow back. This program will read the user's following and follower JSON data and create a CSV with two columns. The first column lists the fakes, and the second column lists the fans.
 
 # Setup
 First, open the desired Instagram account and navigate to Settings --> 
