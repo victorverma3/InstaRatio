@@ -26,7 +26,7 @@ def find(user):
     
     # finds fakes and fans
     following = [user['string_list_data'][0]['value'] for user in following['relationships_following']]
-    followers = [user['string_list_data'][0]["value"] for user in followers]
+    followers = [user['string_list_data'][0]['value'] for user in followers]
     
     fakes = list(set(following) - set(followers))
     fans = list(set(followers) - set(following))
@@ -37,10 +37,10 @@ def find(user):
     
     # creates a csv containing the users
     data = {
-        "Fakes": fakes
+        "Don't Follow You": fakes
         }
-    df = pd.DataFrame(data, columns = ["Fakes"])
-    newSeries = pd.Series(fans, name = 'Fans')
+    df = pd.DataFrame(data, columns = ["Don't Follow You"])
+    newSeries = pd.Series(fans, name = "You Don't Follow")
     df = pd.concat([df, newSeries], axis = 1)
     path = f'./{user}/{user}users.csv'
     df.to_csv(path, index = 'False')
