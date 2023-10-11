@@ -8,8 +8,7 @@ Fakes are defined as accounts that the user follows, but don't follow the user b
 
 # Setup
 First, open the desired Instagram account and navigate to Your activity --> 
-Download your information --> Request a download --> Select accounts and profiles --> Select types of information --> Followers and following --> "JSON" Format and "All time" Date range. At this screen, request the user data to be 
-downloaded as JSON files. Download the data from your email when it is completed. Finally, unzip the data and move the files followers_1.json and 
+Download your information --> Request a download --> Select accounts and profiles --> Select types of information --> Followers and following --> "JSON" Format and "All time" Date range. After setting these preferences, press "submit request". Download the data from your email when it is completed. Finally, unzip the data and move the files followers_1.json and 
 following.json into a folder called {user}, where user is the name of the 
 person whose data is being used. Then move this folder into the same 
 local directory as igbot.py.
