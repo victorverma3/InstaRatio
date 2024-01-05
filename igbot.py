@@ -2,20 +2,6 @@ import json
 import pandas as pd
 
 
-# run the file for instructions
-print("\nInstructions:")
-print("1. Open Instagram -> Settings -> Privacy and Security")
-print("2. Request data download as json files")
-print(
-    "3. Move followers_1.json and following.json into a folder called {user} in the same directory as this file\n"
-)
-print("When ready, type in: find(user)")
-print(
-    "{user} should be a lowercase string representing the person whose data is being used"
-)
-
-
-# program
 def find(user):
     # open relevant files
     with open(f"./{user}/followers_1.json") as file:
