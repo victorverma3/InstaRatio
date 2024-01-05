@@ -1,7 +1,7 @@
 # InstaRatio
 
 # Overview
-A lot of people on Instagram care about their ratio of followers to following, with a greater follower-following ratio seen as more desirable. This program identifies accounts that don't follow the user back, as well as accounts that the user doesn't follow back, in order to make it easier to optimize the user's Instagram follower-following ratio.
+A lot of people on Instagram care about their ratio of followers to following, with a greater follower-following ratio seen as more desirable. This program identifies accounts that don't follow the user back, as well as accounts that the user doesn't follow back, to make it easier to optimize the user's follower-following ratio on Instagram.
 
 # Setup
 1. Open the desired Instagram account and navigate to `Your activity` --> `Download your information` --> `Request a download` --> `Select accounts and profiles` --> `Select types of information` --> `Followers and following` --> `"JSON" Format` and `"All time" Date range`.
