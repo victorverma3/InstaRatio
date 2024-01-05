@@ -1,14 +1,16 @@
-# FakeFriends
-
-# Inspiration
-Instagram, like most social media, is full of "fake friends", which I define as any account that is not both following the user and followed by the user. I created this program so that users can identify their "fake friends" on Instagram and take action to follow/unfollow them if desired. Naturally, there will accounts (e.g. sports pages) that will not follow the user back, but this is left for the user to categorize. 
+# InstaRatio
 
 # Overview
-Fakes are defined as accounts that the user follows, but don't follow the user back. Fans are defined as accounts that follow the user, but the user doesn't follow back. This program will read the user's following and follower JSON data and create a CSV with two columns. The first column lists the fakes, and the second column lists the fans.
+A lot of people on Instagram care about their ratio of followers to following, with a greater follower-following ratio seen as more desirable. This program identifies both accounts that don't follow the user back accounts that the user doesn't follow back to make it easier to optimize the user's Instagram follower-following ratio.
 
 # Setup
 1. Open the desired Instagram account and navigate to `Your activity` --> `Download your information` --> `Request a download` --> `Select accounts and profiles` --> `Select types of information` --> `Followers and following` --> `"JSON" Format` and `"All time" Date range`.
 2. After setting these preferences, press `submit request` and download the data from your email when it is completed.
 3. Unzip the data and move the files `followers_1.json` and `following.json` into a folder called `user`, where `user` is the name of the person whose data is being used. Then move this folder into the same local directory as `igbot.py`.
-4. Run `pip -r ./requirements.txt` to download the dependencies required to run `igbot.py`.
+4. Run `pip install -r ./requirements.txt` to download the dependencies required to run `igbot.py`.
+
+# Running the program
+1. Ensure you have completed the steps in the [Setup](#setup) section.
+2. Run `find(user)`, where `user` refers to the folder within the local directory of `igbot.py` that contains the follower and following json files.
+3. A CSV file titled `{user}users.csv` will be created within the `user` folder. One column will list accounts that don't follow the user back, and another column will list accounts that the user doesn't follow back.
 
