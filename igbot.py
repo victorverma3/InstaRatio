@@ -34,3 +34,7 @@ def find(user):
         f"\nThe list of fakes and fans is available in csv format at ./{user}/{user}users.csv\n"
     )
     return df
+
+
+if __name__ == "__main__":
+    find("victor")
