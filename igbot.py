@@ -31,7 +31,7 @@ def find(user):
     path = f"./{user}/{user}users.csv"
     df.to_csv(path, index="False")
     print(
-        f"\nThe list of fakes and fans is available in csv format at ./{user}/{user}users.csv\n"
+        f"\nThe list of followers and following is available in csv format at ./{user}/{user}users.csv\n"
     )
     return df
 
