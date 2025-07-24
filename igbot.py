@@ -1,40 +1,66 @@
+import argparse
 import json
 import pandas as pd
 
 
-def find(user):
-    # open relevant files
-    with open(f"./{user}/followers_1.json") as file:
-        followers = json.load(file)
-    with open(f"./{user}/following.json") as file:
-        following = json.load(file)
+def process_user(user: str) -> None:
 
-    # finds fakes and fans
-    following = [
-        user["string_list_data"][0]["value"]
-        for user in following["relationships_following"]
-    ]
-    followers = [user["string_list_data"][0]["value"] for user in followers]
+    # Loads relevant files
+    try:
+        with open(f"./{user}/followers_1.json") as file:
+            followers = json.load(file)
+    except:
+        raise FileNotFoundError(f"The file ./{user}/followers_1.json does not exist")
 
-    fakes = list(set(following) - set(followers))
-    fans = list(set(followers) - set(following))
+    try:
+        with open(f"./{user}/following.json") as file:
+            following = json.load(file)
+    except:
+        raise FileNotFoundError(f"The file ./{user}/following.json does not exist")
 
-    # sorts results
-    fakes.sort()
-    fans.sort()
+    # Parses following and followers
+    try:
+        following = [
+            user["string_list_data"][0]["value"]
+            for user in following["relationships_following"]
+        ]
+        followers = [user["string_list_data"][0]["value"] for user in followers]
+    except:
+        raise Exception("Failed to parse following and followers")
 
-    # creates a csv containing the users
-    data = {"Don't Follow You": fakes}
-    df = pd.DataFrame(data, columns=["Don't Follow You"])
-    newSeries = pd.Series(fans, name="You Don't Follow")
-    df = pd.concat([df, newSeries], axis=1)
-    path = f"./{user}/{user}users.csv"
-    df.to_csv(path, index="False")
-    print(
-        f"\nThe list of followers and following is available in csv format at ./{user}/{user}users.csv\n"
+    # Computes differences
+    dont_follow_you = sorted(set(following) - set(followers))
+    you_dont_follow = sorted(set(followers) - set(following))
+
+    # Pads length
+    max_len = max(len(dont_follow_you), len(you_dont_follow))
+    dont_follow_you += [None] * (max_len - len(dont_follow_you))
+    you_dont_follow += [None] * (max_len - len(you_dont_follow))
+
+    # Saves as df
+    df = pd.DataFrame(
+        {
+            "Don't Follow You": dont_follow_you,
+            "You Don't Follow": you_dont_follow,
+        }
     )
-    return df
+
+    # Saves differences to CSV
+    path = f"./{user}/{user}_users.csv"
+    df.to_csv(path, index=False)
+    print("Saved one-way instagram connections to", path)
 
 
 if __name__ == "__main__":
-    find("victor")
+
+    parser = argparse.ArgumentParser()
+
+    # User
+    parser.add_argument(
+        "-u", "--user", type=str, required=True, help="The user to process."
+    )
+
+    args = parser.parse_args()
+
+    # Processes the user
+    process_user(user=args.user)
